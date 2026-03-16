@@ -19,9 +19,13 @@ function checkNumber() {
     userNumber = userInput.valueAsNumber 
     console.log(userNumber)
 
-    if (!userNumber && userNumber !== 0) {
-        resultText.innerHTML = 'Choose a valid number'
+    if (isNaN(userNumber) || userNumber < 0 || userNumber > 10) {
+        resultText.innerHTML = 'Invalid Guess: Guess numbers between 0 to 10 only'
         document.body.classList.add('invalid-background');
+        playBuzzingSound();
+        setTimeout(() => {
+            document.body.classList.remove('invalid-background');
+        }, 2000);
         displayActionButtons()
         return;
     } 
@@ -75,4 +79,17 @@ function gameAction (type = 'restart') {
 
 function generateRandomNumber() {
     return Math.floor(Math.random() * 11);
+}
+
+function playBuzzingSound() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    oscillator.frequency.setValueAtTime(800, audioContext.currentTime); // buzzing frequency
+    oscillator.type = 'sawtooth';
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 2);
 }

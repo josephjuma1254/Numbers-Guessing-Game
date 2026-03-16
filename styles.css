@@ -538,31 +538,22 @@ body {
     100% { background: linear-gradient(45deg, #ffffff, #0066ff); }
 }
 
-/* Invalid input - Scrolling text */
+/* Invalid input - Large red warning */
 .invalid-background {
     position: relative;
-    overflow: hidden;
     background: var(--bg-base);
 }
 
 .invalid-background::before {
-    content: "Invalid Input!!!! Invalid Input!!!! Invalid Input!!!! Invalid Input!!!! Invalid Input!!!! ";
+    content: "Invalid!!";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    font-size: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
     font-weight: bold;
     color: var(--danger);
-    white-space: nowrap;
-    animation: scroll-text 3s linear infinite;
-    z-index: 0;
-}
-
-@keyframes scroll-text {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    z-index: 10;
 }
 
 /* Ensure content stays above background effects */
