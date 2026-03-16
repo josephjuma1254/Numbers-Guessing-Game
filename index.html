@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A sleek number guessing game. Try to guess the random number between 1 and 10.">
+    <title>Numbers Guessing Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Ambient background glow -->
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <main id="app">
+        <!-- Header -->
+        <header id="game-header">
+            <div class="logo-icon" aria-hidden="true">?</div>
+            <h1>Number Guesser</h1>
+            <p class="tagline">Guess the secret number between <strong>1</strong> and <strong>10</strong></p>
+        </header>
+
+        <!-- Game Card -->
+        <section id="game-card" class="card">
+            <label for="guess" class="input-label">Your Guess</label>
+            <div class="input-row">
+                <input
+                    type="number"
+                    id="guess"
+                    min="1"
+                    max="10"
+                    placeholder="1 – 10"
+                    autocomplete="off"
+                >
+                <button id="guess-btn" onclick="checkNumber()">
+                    <span class="btn-text">Guess</span>
+                    <span class="btn-icon" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Result Feedback -->
+        <section id="result-card" class="card result-card">
+            <p id="result" class="result-text">Make your first guess!</p>
+        </section>
+
+        <!-- Score Panel -->
+        <section id="score-card" class="card score-card">
+            <h2 class="score-title">Scoreboard</h2>
+            <div id="scores" class="scores-grid">
+                <!-- Scores injected by JS -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="game-footer">
+            <p>&copy; 2026 Number Guesser &middot; Built for fun</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
