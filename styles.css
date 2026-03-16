@@ -326,6 +326,38 @@ body {
     transform: translateX(3px);
 }
 
+.restart-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--bg-base);
+    background: var(--success);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    transition:
+        background 0.25s var(--ease-out),
+        transform 0.2s var(--ease-out),
+        box-shadow 0.25s var(--ease-out);
+}
+
+.restart-button:hover {
+    background: hsl(152, 60%, 58%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px hsla(152, 70%, 48%, 0.25);
+}
+
+.restart-button:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: none;
+}
+
 
 #action-section {
     display: none;
@@ -480,4 +512,61 @@ body {
         justify-content: center;
         padding: 0.95rem;
     }
+}
+
+/* ---------- Background Effects ---------- */
+
+/* Wrong guess - Red and Black Siren */
+.wrong-background {
+    animation: siren-red-black 0.5s infinite alternate;
+    background: linear-gradient(45deg, #ff0000, #000000);
+}
+
+@keyframes siren-red-black {
+    0% { background: linear-gradient(45deg, #ff0000, #000000); }
+    100% { background: linear-gradient(45deg, #000000, #ff0000); }
+}
+
+/* Correct guess - Blue and White Siren */
+.correct-background {
+    animation: siren-blue-white 0.5s infinite alternate;
+    background: linear-gradient(45deg, #0066ff, #ffffff);
+}
+
+@keyframes siren-blue-white {
+    0% { background: linear-gradient(45deg, #0066ff, #ffffff); }
+    100% { background: linear-gradient(45deg, #ffffff, #0066ff); }
+}
+
+/* Invalid input - Scrolling text */
+.invalid-background {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-base);
+}
+
+.invalid-background::before {
+    content: "Invalid Input!!!! Invalid Input!!!! Invalid Input!!!! Invalid Input!!!! Invalid Input!!!! ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--danger);
+    white-space: nowrap;
+    animation: scroll-text 3s linear infinite;
+    z-index: 0;
+}
+
+@keyframes scroll-text {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Ensure content stays above background effects */
+.invalid-background #app {
+    position: relative;
+    z-index: 2;
 }

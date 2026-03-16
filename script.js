@@ -12,14 +12,18 @@ let scoreText = document.getElementById('scores')
 
 function checkNumber() {
 
-
+    // Clear any existing background effects
+    document.body.className = '';
 
     //Getting the input value
     userNumber = userInput.valueAsNumber 
     console.log(userNumber)
 
     if (!userNumber && userNumber !== 0) {
-        alert('Choose a valid number')
+        resultText.innerHTML = 'Choose a valid number'
+        document.body.classList.add('invalid-background');
+        displayActionButtons()
+        return;
     } 
     
     
@@ -31,13 +35,16 @@ function checkNumber() {
         scoreText.innerHTML = score
         resultText.innerHTML = `Correct, the number is ${randomNumber}`
         gameCard.style.display = 'none'
+        document.body.classList.add('correct-background');
         
     } else if (userNumber !== randomNumber) {
         if (userNumber < randomNumber) {
             resultText.innerHTML = `Wrong, go higher`
+            document.body.classList.add('wrong-background');
 
         } else {
             resultText.innerHTML = `Wrong, go lower`
+            document.body.classList.add('wrong-background');
         }
     } 
 }
@@ -52,6 +59,8 @@ function gameAction (type = 'restart') {
     if (type == 'restart') {
         gameCard.style.display = 'block'
         randomNumber = generateRandomNumber()
+        document.body.className = '';
+        resultText.innerHTML = 'Make your first guess!'
     } else if (type === 'reset') {
         gameCard.style.display = 'block'
         randomNumber = generateRandomNumber()
@@ -59,6 +68,7 @@ function gameAction (type = 'restart') {
         scoreText.innerHTML = score
         resultText.innerHTML = 'Make your first guess!'
         userInput.value = "";
+        document.body.className = '';
     }
     
 }
